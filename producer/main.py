@@ -1,6 +1,6 @@
 from datetime import date, timedelta
-from datasource import IDatasource
-from news_api import NewsAPI
+from datasource.datasource import IDatasource
+from datasource.news_api import NewsAPI
 import sys
 
 datasources: dict[str, type(IDatasource)] = {

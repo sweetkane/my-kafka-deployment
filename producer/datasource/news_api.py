@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from datasource import IDatasource
+from datasource.datasource import IDatasource
 from newsapi import NewsApiClient
 import os
 
@@ -18,7 +18,7 @@ class NewsAPI(IDatasource):
         for i in range(len(articles)):
             article_date = articles[i]["publishedAt"]
             article_date = datetime.strptime(article_date, "%Y-%m-%dT%H:%M:%SZ")
-            if article_date < since_date:
+            if article_date.date() < since_date:
                 to_remove.append(i)
         for i in reversed(to_remove):
             articles = articles[:i] + articles[i+1:]
