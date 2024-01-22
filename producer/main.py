@@ -1,6 +1,7 @@
 from datetime import date, timedelta
 from datasource.datasource import IDatasource
 from datasource.news_api import NewsAPI
+from producer.producer import Producer
 import sys
 
 datasources: dict[str, type(IDatasource)] = {
@@ -17,9 +18,8 @@ def main() -> int:
     key = sys.argv[1]
 
     datasource = datasources[key]()
-    data = datasource.get_since(date.today()-timedelta(days=1))
-    print(data)
-
+    producer = Producer(topic=key, datasource=datasource)
+    producer.send_since(date.today()-timedelta(days=1))
 
 if __name__ == '__main__':
     sys.exit(main())

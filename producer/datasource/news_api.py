@@ -11,7 +11,7 @@ class NewsAPI(IDatasource):
         self.api_client = NewsApiClient(news_api_key)
 
 
-    def get_since(self, since_date: date):
+    def get_since(self, since_date: date) -> dict:
         res = self.api_client.get_top_headlines()
         articles = res['articles']
         to_remove = []
@@ -22,5 +22,5 @@ class NewsAPI(IDatasource):
                 to_remove.append(i)
         for i in reversed(to_remove):
             articles = articles[:i] + articles[i+1:]
-        return articles
+        return {'data': articles}
 
