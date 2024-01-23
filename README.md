@@ -1,4 +1,4 @@
-# mytwitterbot
+# my-kafka-deployment
 
 1. install kubectl, helm, terraform, azure cli
 
